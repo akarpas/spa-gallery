@@ -22,14 +22,11 @@ callFlickr = (baseUrl,method,text,page) => {
     if (response.ok) {
       return response.json()
     } else {
-      return response.status
+      callFlickr(baseUrl,method,text,page)
     }
   })
   .then(data => {
     return data
-  })
-  .catch(error => {
-    callFlickr(baseUrl,method,text,page)
   })
 }
 
