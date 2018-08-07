@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 30vh;
+  color: black;
+  padding: 2vh 2vw;
+  background-color: white;
+}
+
+.link {
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  color: black;
+  margin: 5vh 0;
+  font-weight: 600;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 5px;
+  height: auto;
+}
+
+.link:hover {
+  color: rgba(0,0,0,0.4);
+  background-color: grey;
+}
