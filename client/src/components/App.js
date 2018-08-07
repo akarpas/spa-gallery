@@ -18,7 +18,7 @@ class App extends React.Component {
         <div className={style.mainContainer}>
           <div className={style.content}>
           <HashRouter>
-              <Route path="/gallery/:pageId" component={Gallery}/>
+            <Route path="/gallery/:pageId" component={Gallery}/>
           </HashRouter>
           </div>
         </div>  
