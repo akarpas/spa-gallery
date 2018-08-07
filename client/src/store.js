@@ -8,9 +8,8 @@ const logger = store => next => (action) => {
   const res = next(action)
   const newState = store.getState()
   if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line
-    console.info('------ Action dispatched ------', action) // eslint-disable-next-line
-    console.info('---------- Old state ----------', oldState) // eslint-disable-next-line
+    console.info('------ Action dispatched ------', action)
+    console.info('---------- Old state ----------', oldState)
     console.info('---------- New state ----------', newState)
   }
   return res
