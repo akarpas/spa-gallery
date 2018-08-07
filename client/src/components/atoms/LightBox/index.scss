@@ -34,3 +34,15 @@
   color: white;
   font-weight: 600;
 }
+
+@media screen and (max-width: 800px) {
+  .imageContainer {
+    width: 80%
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .imageContainer {
+    width: 90%
+  }
+}
