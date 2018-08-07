@@ -1,0 +1,44 @@
+.pagination {
+  height: auto;
+  width: 30%;
+  background-color: white;
+  margin-bottom: 2vh;
+  border-radius: 10px;
+}
+
+.pages {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  list-style: none;
+  font-weight: 600;
+}
+
+.pages li {
+  display: inline;
+  width: 10%;
+  justify-content: center;
+  margin-left: 2vw;
+}
+
+.separator {
+  border-right: 1px solid black;
+}
+
+.nav {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.nav:hover {
+  color: rgba(0,0,0,0.7);
+}
+
+@media screen and (max-width: 800px) {
+  .pagination {
+    width: 60%;
+  }
+}
