@@ -48,9 +48,9 @@ class Gallery extends React.Component {
     this.setState({ pageNumber })
   }
 
-  setupColumns = (photos) => {
+  setupColumns = (photos, pageNumber) => {
     return _.map(photos, (chunk, index)=> {
-      return <Column key={`column${index}`} data={chunk}/>
+      return <Column key={`column${index}`} data={chunk} page={pageNumber}/>
     })
   }
 
@@ -69,6 +69,8 @@ class Gallery extends React.Component {
 
   render() {
     const photos = this.state.photos && _.chunk(this.state.photos, 5)
+    const pageNumber = this.props.location.pathname.split('/')[2]
+
     return (
       <div className={style.container}>
         <Pagination />
@@ -77,7 +79,7 @@ class Gallery extends React.Component {
           {
             this.state.imagesLoading ?
               this.getLoading() :
-              this.setupColumns(photos)
+              this.setupColumns(photos, pageNumber)
           }
           </div>
         </div>
