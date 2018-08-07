@@ -5,8 +5,6 @@ import style from './index.scss'
 
 class LightBox extends React.Component {
   render() {
-    const modal = _.get(this.props.location, 'state.modal')
-    console.warn(modal)
     return (
       <div className={style.overlay} id="closeA" onClick={(e) => this.props.toggleModal(e)}>
         <div className={style.close} id="closeB" onClick={(e) => this.props.toggleModal(e)}> X - CLOSE - X</div>
