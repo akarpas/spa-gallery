@@ -2,22 +2,26 @@
 import React from 'react'
 import {
   Route,
-  HashRouter
+  Router,
+  HashRouter,
+  Switch
 } from 'react-router-dom'
 import Gallery from './organisms/Gallery'
+import LightBox from './atoms/LightBox'
 
 import style from './App.scss'
 
 class App extends React.Component {
+  // <Route path="/gallery/:pageId/photo" component={LightBox}/>
   render() {
     return (
-      <HashRouter>
         <div className={style.mainContainer}>
           <div className={style.content}>
-            <Route path="/gallery/:pageId" component={Gallery}/>
+          <HashRouter>
+              <Route path="/gallery/:pageId" component={Gallery}/>
+          </HashRouter>
           </div>
         </div>  
-      </HashRouter>
     )
   }
 }
