@@ -17,11 +17,9 @@ app.use(bodyParser.json({
 
 app.use('/api', routes)
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(DIST_DIR, 'index.html'))
-// })
-
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(DIST_DIR, 'index.html'))
+})
 
 app.listen(PORT)
 
