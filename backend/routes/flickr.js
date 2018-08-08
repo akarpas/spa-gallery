@@ -6,29 +6,29 @@ const parser = require('../helpers/dataParser')
 const asyncWrapper = require('../utils/asyncWrapper')
 
 require('dotenv').config()
+
 const { FLICKR_API_KEY } = process.env
 
-callFlickr = (baseUrl,method,text,page) => {
-    const endUrl = method.includes('photos') ?
-    `&api_key=${FLICKR_API_KEY}&text=${text}&page=${page}&per_page=20&sort=relevance&format=json&nojsoncallback=1` :
-    `&api_key=${FLICKR_API_KEY}&user_id=${text}&format=json&nojsoncallback=1`
+callFlickr = (baseUrl,method,input,page) => {
+  const endUrl = method.includes('photos') ?
+  `&api_key=${FLICKR_API_KEY}&text=${input}&page=${page}&per_page=20&sort=relevance&format=json&nojsoncallback=1` :
+  `&api_key=${FLICKR_API_KEY}&user_id=asdasds&format=json&nojsoncallback=1`
 
-    return fetch(
-      `${baseUrl}${method}${endUrl}`,
-      {
-        method: 'get'
-      }
-    )
-    .then((response, error) => {
-      if (response.ok) {
-        return response.json()
-      } else {
-        return Promise.reject(new Error(error))
-      }
-    })
-    .then(data => {
-      return Promise.resolve(data)
-    })
+  return fetch(
+    `${baseUrl}${method}${endUrl}`,
+    {
+      method: 'get'
+    }
+  )
+  .then((response) => {
+    if (response.size != 0) {
+      return response.json()
+    }
+    return Promise.reject(new Error())
+  })
+  .then(data => {
+    return Promise.resolve(data)
+  })
 }
 
 router.post('/search', async (req, res) => {
@@ -40,9 +40,11 @@ router.post('/search', async (req, res) => {
   const page = req.body.page
 
   const photosRequest = await asyncWrapper(callFlickr(baseUrl,photosMethod,text,page))
-
   if (photosRequest.error) {
-    res.status(400)
+    return res.status(400).send({
+      status: 400,
+      message: 'Error with fetching photos from flickr '
+    })
   }
 
   const { photos } = photosRequest.data
@@ -51,7 +53,10 @@ router.post('/search', async (req, res) => {
       const userRequest = await asyncWrapper(callFlickr(baseUrl,usersMethod,onePhoto.owner))
 
       if (userRequest.error) {
-        res.status(400)
+        return res.status(400).send({
+          status: 400,
+          message: 'Error with fetching photos from flickr '
+        })
       }
       
       const { person } = userRequest.data
