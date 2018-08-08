@@ -1,5 +1,7 @@
 .container {
   display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
@@ -8,6 +10,8 @@
 
 .gallery {
   display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
@@ -21,6 +25,8 @@
 
 .row {
   display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
   flex-wrap: wrap;
   padding: 0 4px;
 }
@@ -31,6 +37,8 @@ div > h2 {
 
 .loading {
   display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;

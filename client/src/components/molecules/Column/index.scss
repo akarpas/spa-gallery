@@ -1,4 +1,6 @@
 .column {
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
   flex: 25%;
   flex-flow: column;
@@ -9,13 +11,14 @@
 }
 
 .column .thumbnail {
-  height: auto;
   width: 90%;
   vertical-align: middle;
 }
 
 .container {
   position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -26,6 +29,8 @@
 
 .container .center {
   cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
   flex-flow: column;
   justify-content: center;
