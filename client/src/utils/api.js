@@ -1,8 +1,5 @@
 import fetch from 'node-fetch'
 
-// const test = process.env.NODE_ENV === 'test'
-// const dev = process.env.NODE_ENV === 'development'
-
 const baseUrl = 'http://localhost:5050/api/flickr'
 
 export default async (endpoint, text, page, method) => {
@@ -18,10 +15,12 @@ export default async (endpoint, text, page, method) => {
   url = `${baseUrl}${endpoint}`
 
   const response = await fetch(url, options)
-  const body = await response.json()
 
   if (response.status !== 200) {
     throw Error(body.message)
   }
-  return body
+
+  const body = await response.json()
+
+  return body  
 }
