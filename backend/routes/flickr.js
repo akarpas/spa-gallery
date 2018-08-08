@@ -30,7 +30,7 @@ callFlickr = (baseUrl,method,text,page) => {
   })
 }
 
-router.post('/search', async (req, res, next) => {
+router.post('/search', async (req, res) => {
 
   const baseUrl = `https://api.flickr.com/services/rest/?method=`
   const photosMethod = `flickr.photos.search`
