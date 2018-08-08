@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import LightBox from '../../atoms/LightBox'
 import _ from 'lodash'
 import { withRouter } from 'react-router-dom'
@@ -11,14 +10,36 @@ class Column extends React.Component {
     this.state = {
       showModal: false,
       imageUrl: '',
-      page: this.props.page
+      hash: ''
     }
+    this.props.history.listen((location, action) => {
+      if (location.hash === this.state.hash) {
+        this.setState({ showModal: false })
+      }
+    })
+  }
+
+  componentDidUpdate() {
+    window.onpopstate = (e) => {
+      e.preventDefault()
+      this.closeModal()
+    }
+  }
+
+  componentWillUnmount() {
+    window.onpopstate = () => {}
+  }
+
+  closeModal = () => {
+    this.props.history.push(this.props.page)
+    this.setState({ showModal: false })
   }
 
   toggleModal = (e, url) => {
     e.preventDefault()
     const { id } = e.target
-    this.setState({ showModal: !this.state.showModal, imageUrl: id })
+    // this.props.history.push("#box")
+    this.setState({ showModal: !this.state.showModal, imageUrl: id, hash: "#box" })
   }
 
   render() {
