@@ -1,3 +1,7 @@
+p {
+  height: 0;
+}
+
 .overlay {
   position: fixed;
   display: flex;
@@ -17,14 +21,17 @@
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 40%;
-  height: 75%;
-  background-color: rgba(255,255,255,0.8);
+  width: 80vw;
+  height: 85vh;
+  background-color: rgba(255,255,255,1);
 }
 
 .image {
-  width: 90%;
-  height: 90%;
+  display: block;
+  max-width:80vw;
+  max-height:95vh;
+  width: auto;
+  height: auto;
 }
 
 .close {
@@ -33,6 +40,11 @@
   font-size: 20px;
   color: white;
   font-weight: 600;
+}
+
+.details {
+  height: auto;
+  margin: 1vh 1vw;
 }
 
 @media screen and (max-width: 800px) {
