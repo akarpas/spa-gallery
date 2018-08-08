@@ -53,7 +53,7 @@ router.post('/search', async (req, res) => {
   const photosUsernames = await Promise.all(
     _(photos.photo).map(async onePhoto => {
       const userRequest = await asyncWrapper(callFlickr(baseUrl,usersMethod,onePhoto.owner))
-      // console.log("!!!!!!!!!!!!!! ", userRequest)
+
       if (userRequest.error) {
         return res.status(400).send({
           status: 400,
