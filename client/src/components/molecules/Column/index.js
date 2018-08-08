@@ -38,7 +38,6 @@ class Column extends React.Component {
   toggleModal = (e, url) => {
     e.preventDefault()
     const { id } = e.target
-    // this.props.history.push("#box")
     this.setState({ showModal: !this.state.showModal, imageUrl: id, hash: "#box" })
   }
 
@@ -46,17 +45,33 @@ class Column extends React.Component {
     return (
       <div className={style.column}>
         {_.map(this.props.data, (image, index) => {
+          const { username, realName, profileUrl } = image.user
+          const { title, url } = image.photo
           return (
               <div key={`holder${index}`} className={style.container}>
-                <img key={`img${index}`} src={image.url}/>
-                <div id={image.url} onClick={(e) => this.toggleModal(e, image.url)} className={style.center}>{image.username}</div>
-                {this.state.showModal &&
-                  <LightBox id="box" toggleModal={this.toggleModal} image={this.state.imageUrl}/>
+                <img className={style.thumbnail} key={`img${index}`} src={url}/>
+                <div
+                  id={url}
+                  onClick={(e) => this.toggleModal(e, url)}
+                  className={style.center}>
+                  {username}
+                </div>
+                {
+                  this.state.showModal &&
+                    <LightBox id="box"
+                      toggleModal={this.toggleModal}
+                      image={this.state.imageUrl}
+                      imageInfo={{
+                        username,
+                        realName,
+                        profileUrl,
+                        title
+                      }}
+                    />
                 }
               </div>
           )
-        })
-        }
+        })}
       </div>
     )
   }
