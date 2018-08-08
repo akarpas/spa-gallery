@@ -12,7 +12,7 @@ const { FLICKR_API_KEY } = process.env
 callFlickr = (baseUrl,method,input,page) => {
   const endUrl = method.includes('photos') ?
   `&api_key=${FLICKR_API_KEY}&text=${input}&page=${page}&per_page=20&sort=relevance&format=json&nojsoncallback=1` :
-  `&api_key=${FLICKR_API_KEY}&user_id=asdasds&format=json&nojsoncallback=1`
+  `&api_key=${FLICKR_API_KEY}&user_id=${input}&format=json&nojsoncallback=1`
 
   return fetch(
     `${baseUrl}${method}${endUrl}`,
