@@ -3,7 +3,6 @@ const router = express.Router()
 const axios = require('axios')
 const _ = require('lodash')
 const parser = require('../helpers/dataParser')
-const asyncWrapper = require('../utils/asyncWrapper')
 
 require('dotenv').config()
 
@@ -20,15 +19,14 @@ callFlickr = (baseUrl,method,input,page) => {
       method: 'get'
     }
   )
-  .then(response => {
-    if (response.data.stat === 'fail') {
-      return Promise.reject(new Error(response.error))
+  .then(({ data }) => {
+    if (data.stat === 'fail') {
+      return { error: data.message }
     }
-    const { data } = response
-    return Promise.resolve(data)
+    return { data }
   })
   .catch(error => {
-    return Promise.reject(new Error(error))
+    return { error }
   })
 }
 
@@ -40,7 +38,7 @@ router.post('/search', async (req, res) => {
   const text = req.body.text.replace(' ','+')
   const page = req.body.page
 
-  const photosRequest = await asyncWrapper(callFlickr(baseUrl,photosMethod,text,page))
+  const photosRequest = await callFlickr(baseUrl,photosMethod,text,page)
 
   if (photosRequest.error) {
     return res.status(400).send({
@@ -52,12 +50,12 @@ router.post('/search', async (req, res) => {
   const { photos } = photosRequest.data
   const photosUsernames = await Promise.all(
     _(photos.photo).map(async onePhoto => {
-      const userRequest = await asyncWrapper(callFlickr(baseUrl,usersMethod,onePhoto.owner))
+      const userRequest = await callFlickr(baseUrl,usersMethod,onePhoto.owner)
 
       if (userRequest.error) {
         return res.status(400).send({
           status: 400,
-          message: 'Error with fetching photos from flickr '
+          message: 'Error with fetching users from flickr '
         })
       }
       
