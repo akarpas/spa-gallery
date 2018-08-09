@@ -10,7 +10,14 @@ router.post('/search', async (req, res) => {
   const photosMethod = `flickr.photos.search`
   const usersMethod = `flickr.people.getInfo`
   const text = req.body.text.replace(' ','+')
-  const page = req.body.page
+  const page = req.body.page || 1
+
+  if (!text) {
+    return res.status(400).send({
+      status: 400,
+      message: 'No Text for Photo search Provided'
+    })
+  }
 
   const photosRequest = await flickr.call(baseUrl,photosMethod,text,page)
 
