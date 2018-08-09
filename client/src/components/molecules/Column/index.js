@@ -35,7 +35,7 @@ class Column extends React.Component {
     this.setState({ showModal: false })
   }
 
-  toggleModal = (e, url) => {
+  toggleModal = (e) => {
     e.preventDefault()
     const { id } = e.target
     this.setState({ showModal: !this.state.showModal, imageUrl: id, hash: "#box" })
@@ -49,10 +49,16 @@ class Column extends React.Component {
           const { title, url } = image.photo
           return (
               <div key={`holder${index}`} className={style.container}>
-                <img className={style.thumbnail} key={`img${index}`} src={url}/>
-                <div
+                <img
                   id={url}
-                  onClick={(e) => this.toggleModal(e, url)}
+                  onClick={(e) => this.toggleModal(e)}
+                  className={style.thumbnail}
+                  key={`img${index}`}
+                  src={url}
+                />
+                <div
+                  onClick={(e) => this.toggleModal(e)}
+                  id={url}
                   className={style.center}>
                   {username}
                 </div>
