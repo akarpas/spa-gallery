@@ -1,7 +1,7 @@
 ### SPA Gallery
 #### Responsive Gallery with React and NodeJS backend connecting to Flickr API
 
-##### NEED TO SET A .env FILE AS PER EXAMPLE .env-example WITH FLICKR API KEY**
+##### IMPORTANT: ** NEED TO SET A .env FILE AS PER EXAMPLE .env-example WITH FLICKR API KEY **
 
 ##### RUN
 
