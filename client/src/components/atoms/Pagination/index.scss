@@ -1,0 +1,54 @@
+.pagination {
+  height: auto;
+  width: 30%;
+  background-color: white;
+  margin-bottom: 2vh;
+  border-radius: 10px;
+}
+
+.pages {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  list-style: none;
+}
+
+.pages li {
+  display: inline;
+  width: 10%;
+  justify-content: center;
+  margin-left: 2vw;
+}
+
+.separator {
+  border-right: 1px solid black;
+}
+
+.nav {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+
+.nav:hover {
+  color: rgba(0,0,0,0.7);
+}
+
+.active {
+  cursor: auto;
+  color: rgba(0,0,0,0.3);
+  font-weight: 400;
+}
+
+.active:hover {
+  color: rgba(0,0,0,0.3);
+}
+
+@media screen and (max-width: 800px) {
+  .pagination {
+    width: 60%;
+  }
+}

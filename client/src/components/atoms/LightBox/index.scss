@@ -1,0 +1,68 @@
+p {
+  height: 0;
+}
+
+.overlay {
+  position: fixed;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 99;
+}
+
+.imageContainer {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 85vh;
+  background-color: rgba(255,255,255,1);
+}
+
+.image {
+  display: block;
+  max-width:80vw;
+  max-height:95vh;
+  width: auto;
+  height: auto;
+}
+
+.close {
+  cursor: pointer;
+  height: auto;
+  font-size: 20px;
+  color: black;
+  font-weight: 600;
+  background-color: lightgrey;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 3px 0 3px 0;
+}
+
+.details {
+  height: auto;
+  margin: 1vh 1vw;
+}
+
+@media screen and (max-width: 800px) {
+  .imageContainer {
+    width: 80%
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .imageContainer {
+    width: 90%
+  }
+}

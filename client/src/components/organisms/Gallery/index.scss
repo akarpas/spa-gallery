@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.gallery {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 80%;
+  min-height: 200px;
+  height: auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.row {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+div > h2 {
+  color: black;
+}
+
+.loading {
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  margin: 20px;
+}
