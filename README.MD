@@ -11,6 +11,8 @@ cd ..
 nvm use && npm install && npm start
 ```
 
+**nvm use is needed to set node environment to lts/carbon**
+
 ##### TEST SERVER
 
 ```
