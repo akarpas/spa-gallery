@@ -1,34 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const axios = require('axios')
+const flickr = require('../utils/flickrApi')
 const _ = require('lodash')
 const parser = require('../helpers/dataParser')
-
-require('dotenv').config()
-
-const { FLICKR_API_KEY } = process.env
-
-callFlickr = (baseUrl,method,input,page) => {
-  const endUrl = method.includes('photos') ?
-  `&api_key=${FLICKR_API_KEY}&text=${input}&page=${page}&per_page=20&sort=relevance&format=json&nojsoncallback=1` :
-  `&api_key=${FLICKR_API_KEY}&user_id=${input}&format=json&nojsoncallback=1`
-
-  return axios.get(
-    `${baseUrl}${method}${endUrl}`,
-    {
-      method: 'get'
-    }
-  )
-  .then(({ data }) => {
-    if (data.stat === 'fail') {
-      return { error: data.message }
-    }
-    return { data }
-  })
-  .catch(error => {
-    return { error }
-  })
-}
 
 router.post('/search', async (req, res) => {
 
@@ -38,7 +12,7 @@ router.post('/search', async (req, res) => {
   const text = req.body.text.replace(' ','+')
   const page = req.body.page
 
-  const photosRequest = await callFlickr(baseUrl,photosMethod,text,page)
+  const photosRequest = await flickr.call(baseUrl,photosMethod,text,page)
 
   if (photosRequest.error) {
     return res.status(400).send({
@@ -50,7 +24,7 @@ router.post('/search', async (req, res) => {
   const { photos } = photosRequest.data
   const photosUsernames = await Promise.all(
     _(photos.photo).map(async onePhoto => {
-      const userRequest = await callFlickr(baseUrl,usersMethod,onePhoto.owner)
+      const userRequest = await flickr.call(baseUrl,usersMethod,onePhoto.owner)
 
       if (userRequest.error) {
         return res.status(400).send({
