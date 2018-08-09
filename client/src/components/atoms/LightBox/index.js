@@ -9,7 +9,7 @@ class LightBox extends React.Component {
     const { username, realName, title, profileUrl } = this.props.imageInfo
     return (
       <div className={style.overlay} onClick={(e) => this.props.toggleModal(e)}>
-        <div className={style.close} onClick={(e) => this.props.toggleModal(e)}> X - CLOSE - X</div>
+        <div className={style.close} onClick={(e) => this.props.toggleModal(e)}> - CLOSE - </div>
         <div className={style.imageContainer} onClick={(e) => this.ignore(e)}>
           <img className={style.image} src={this.props.image}/>
           {title &&
