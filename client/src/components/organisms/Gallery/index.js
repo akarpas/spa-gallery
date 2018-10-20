@@ -54,6 +54,17 @@ class Gallery extends React.Component {
     })
   }
 
+  setupGallery = (photos, pageNumber) => {
+    return _.map(photos, (photo, index) => {
+      const { url, title } = photo.photo
+      return (
+        <div key={`${title}-div-${index}`}>
+          <img key={`${title}-${index}`} src={url} alt={`${title}-${index}`}/>
+        </div>
+      )
+    })
+  }
+
   getLoading = () => {
     return (
       <div className={style.loading}>
@@ -68,23 +79,20 @@ class Gallery extends React.Component {
 
 
   render() {
-    const photos = this.state.photos && _.chunk(this.state.photos, 5)
+    const photos = this.state.photos && this.state.photos
     const pageNumber = this.props.location.pathname.split('/')[2]
 
     return (
       <div className={style.container}>
         <Pagination />
-        <div className={style.gallery}>
-          <div className={style.row}>
-          {
-            this.state.imagesLoading ?
-              this.getLoading() :
-              this.setupColumns(photos, pageNumber)
-          }
-          </div>
-        </div>
+        {
+          this.state.imagesLoading ? this.getLoading() : (
+            <div className={style.gallery}>
+              {this.setupGallery(photos, pageNumber)}
+            </div>
+          )
+        }
       </div>
-
     )
   }
 }
